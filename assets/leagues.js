@@ -9,12 +9,16 @@
 // "archive" is never overridden. Before start or after end the card is
 // off-season; any other day inside the window is live. Leave both off
 // to pin status by hand.
+//
+// accent: 6-digit hex used as the card's stripe, status chip, and button.
+// Archive rows ignore it and stay grayscale. Ink is chosen for contrast.
 window.TEAM_LEAGUES = [
   {
     id: "nba",
     name: "NBA 2025–26",
     icon: "🏀",
     status: "live",
+    accent: "#F15A22",
     url: "https://michaelrippe.github.io/nbatl26/",
     season: "2025–26 season",
   },
@@ -23,6 +27,7 @@ window.TEAM_LEAGUES = [
     name: "NHL",
     icon: "🏒",
     status: "live",
+    accent: "#A2AAAD",
     url: "https://michaelrippe.github.io/nhltl/",
     season: "Current season",
   },
@@ -31,6 +36,7 @@ window.TEAM_LEAGUES = [
     name: "NFL",
     icon: "🏈",
     status: "live",
+    accent: "#00B140",
     url: "https://michaelrippe.github.io/nfltl/",
     season: "Current season",
   },
@@ -39,6 +45,7 @@ window.TEAM_LEAGUES = [
     name: "MLB",
     icon: "⚾",
     status: "offseason",
+    accent: "#E31937",
     // Opening day flips this card to live. Add `end` when the last day
     // of the 2027 season is set; until then it stays live after it opens.
     start: "2027-03-24",

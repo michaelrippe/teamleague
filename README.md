@@ -27,6 +27,7 @@ Edit the `TEAM_LEAGUES` array in `assets/leagues.js`. Each entry has:
 | `id` | Stable slug. Off-season forms submit as `teamleague-hub-<id>`. |
 | `name` | Card or archive title. |
 | `icon` | Sport emoji. |
+| `accent` | 6-digit hex. Stripe, status chip, and button on a main card. Ignored for `archive`. |
 | `status` | `live`, `offseason`, or `archive`. |
 | `url` | League site. Also the results link unless `resultsUrl` is set. |
 | `season` | Short season note under the name. |
@@ -48,9 +49,10 @@ Example — pin a league in season:
 {
   id: "nba",
   name: "NBA 2025–26",
-  icon: "🏀",
-  status: "live",
-  url: "https://michaelrippe.github.io/nbatl26/",
+    icon: "🏀",
+    status: "live",
+    accent: "#F15A22",
+    url: "https://michaelrippe.github.io/nbatl26/",
   season: "2025–26 season",
 }
 ```
@@ -61,9 +63,10 @@ Example — let opening day flip a league on, and keep last year’s results on 
 {
   id: "mlb",
   name: "MLB",
-  icon: "⚾",
-  status: "offseason",
-  start: "2027-03-24",
+    icon: "⚾",
+    status: "offseason",
+    accent: "#E31937",
+    start: "2027-03-24",
   url: "https://michaelrippe.github.io/mlbtl26/",
   season: "Opens Mar 24, 2027",
   resultsLabel: "2026 results",
