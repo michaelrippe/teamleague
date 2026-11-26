@@ -11,12 +11,13 @@ index.html            Landing page
 .nojekyll             Tell GitHub Pages to serve the files as-is
 assets/leagues.js     The only league list
 assets/hub.js         Renders cards and the archive from that list
+assets/scoreboard.js  Live leader for each in-season league (public reads only)
 assets/interest.js    Shared “notify me” forms (POST only)
-assets/styles.css     Shared dark theme
+assets/styles.css     Shared paper theme
 assets/favicon.svg
 ```
 
-`index.html` is the hub: the name, a short how-it-works, one card per current league, an archive, and a general “next season” signup. JavaScript is only there to read `assets/leagues.js` and to submit the notify forms.
+`index.html` is the hub: the name, one line on how a season works, one card per current league, an archive, and a general “next season” signup. In-season cards fill in the current leader from the same public standings the league sites use. `assets/scoreboard.js` never reads `/interest`.
 
 ## Add or flip a league
 
@@ -27,7 +28,7 @@ Edit the `TEAM_LEAGUES` array in `assets/leagues.js`. Each entry has:
 | `id` | Stable slug. Off-season forms submit as `teamleague-hub-<id>`. |
 | `name` | Card or archive title. |
 | `icon` | Sport emoji. |
-| `accent` | 6-digit hex. Stripe, status chip, and button on a main card. Ignored for `archive`. |
+| `accent` | 6-digit hex. Thin left stripe on a main card. Ignored for `archive`. |
 | `status` | `live`, `offseason`, or `archive`. |
 | `url` | League site. Also the results link unless `resultsUrl` is set. |
 | `season` | Short season note under the name. |

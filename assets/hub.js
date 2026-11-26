@@ -136,34 +136,13 @@
     return match ? "#" + match[1].toUpperCase() : "";
   }
 
-  function accentInk(hex) {
-    var n = parseInt(hex.slice(1), 16);
-    var channels = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(function (v) {
-      var channel = v / 255;
-      return channel <= 0.03928
-        ? channel / 12.92
-        : Math.pow((channel + 0.055) / 1.055, 2.4);
-    });
-    var luminance =
-      0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
-    function ratio(other) {
-      var hi = Math.max(luminance, other);
-      var lo = Math.min(luminance, other);
-      return (hi + 0.05) / (lo + 0.05);
-    }
-    return ratio(0) >= ratio(1) ? "#000000" : "#FFFFFF";
-  }
-
   function renderCard(league, status) {
     var article = document.createElement("article");
     article.className = "card";
     article.dataset.league = league.id || "";
     article.dataset.status = status;
     var accent = normalizeAccent(league.accent);
-    if (accent) {
-      article.style.setProperty("--accent", accent);
-      article.style.setProperty("--accent-ink", accentInk(accent));
-    }
+    if (accent) article.style.setProperty("--accent", accent);
 
     var top = document.createElement("div");
     top.className = "card-top";
@@ -189,6 +168,13 @@
     var body = document.createElement("div");
     body.className = "card-body";
     body.append(top, note);
+    if (status === "live") {
+      var leader = document.createElement("p");
+      leader.className = "leader";
+      leader.hidden = true;
+      leader.dataset.scoreboard = league.id || "";
+      body.appendChild(leader);
+    }
 
     var action = document.createElement("div");
     action.className = "card-action";
@@ -320,6 +306,7 @@
     mountGeneral();
     renderLeagues();
     window.TeamLeagueInterest.init();
+    if (window.TeamLeagueScoreboard) window.TeamLeagueScoreboard.mount();
   }
 
   window.TeamLeagueHub = {

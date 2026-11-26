@@ -10,8 +10,7 @@
 // off-season; any other day inside the window is live. Leave both off
 // to pin status by hand.
 //
-// accent: 6-digit hex used as the card's stripe, status chip, and button.
-// Archive rows ignore it and stay grayscale. Ink is chosen for contrast.
+// accent: 6-digit hex. A thin left stripe on a main card. Archive rows ignore it.
 window.TEAM_LEAGUES = [
   {
     id: "nba",
