@@ -1,7 +1,6 @@
 // Live leader for each in-season league. Reads public standings only.
-// Never requests /interest or /signups.
+// Never requests /interest or /signups. The hub shows wins only.
 (function () {
-  var DASH = "\u2013";
 
   var NBA_ABBR = {
     ATL: "Hawks", BOS: "Celtics", BKN: "Nets", CHA: "Hornets", CHI: "Bulls",
@@ -132,33 +131,17 @@
         stats[item.name] = item;
       });
       var wins = statNumber(stats, "wins");
-      var losses = statNumber(stats, "losses");
-      if (wins == null || losses == null) return;
-      var otl = statNumber(stats, "otLosses");
-      if (otl == null) otl = statNumber(stats, "overtimeLosses");
-      records[name] = {
-        w: wins,
-        l: losses,
-        otl: otl || 0,
-        t: statNumber(stats, "ties") || 0,
-      };
+      if (wins == null || statNumber(stats, "losses") == null) return;
+      records[name] = { w: wins };
     });
     return Object.keys(records).length >= minimum ? records : null;
   }
 
-  function recordText(row, lossesOf) {
-    var text = row.wins + DASH + lossesOf(row);
-    if (row.ties) text += DASH + row.ties;
-    return text;
-  }
-
-  function rank(roster, records, lossesOf) {
+  function rank(roster, records) {
     var rows = [];
     for (var i = 0; i < roster.length; i++) {
       var manager = roster[i];
       var wins = 0;
-      var losses = 0;
-      var ties = 0;
       var best = -1;
       var teams = manager.teams || [];
       if (!teams.length) return null;
@@ -166,11 +149,9 @@
         var rec = records[teams[t]];
         if (!rec) return null;
         wins += rec.w;
-        losses += rec.l + (rec.otl || 0);
-        ties += rec.t || 0;
         if (rec.w > best) best = rec.w;
       }
-      rows.push({ name: manager.name, wins: wins, losses: losses, ties: ties, best: best });
+      rows.push({ name: manager.name, wins: wins, best: best });
     }
     rows.sort(function (a, b) {
       return b.wins - a.wins || b.best - a.best || a.name.localeCompare(b.name);
@@ -179,19 +160,10 @@
     var tied = rows.filter(function (row) {
       return row.wins === top.wins && row.best === top.best;
     });
-    var sameRecord = tied.every(function (row) {
-      return row.losses === top.losses && row.ties === top.ties;
-    });
     return {
       name: tied.map(function (row) { return row.name; }).join(" · "),
-      record: sameRecord
-        ? recordText(top, lossesOf)
-        : tied.map(function (row) { return recordText(row, lossesOf); }).join(" · "),
+      wins: top.wins,
     };
-  }
-
-  function lossesOf(row) {
-    return row.losses;
   }
 
   var LEAGUES = {
@@ -227,20 +199,29 @@
   }
 
   function paint(id, leader) {
-    if (!leader || !leader.name || !leader.record) return;
+    if (!leader || !leader.name || leader.wins == null) return;
     var nodes = document.querySelectorAll("[data-scoreboard='" + id + "']");
     Array.prototype.forEach.call(nodes, function (node) {
       node.replaceChildren();
       var label = document.createElement("span");
       label.className = "leader-k";
-      label.textContent = "Leader";
-      var name = document.createElement("span");
-      name.className = "leader-name";
-      name.textContent = leader.name;
-      var record = document.createElement("span");
-      record.className = "leader-rec";
-      record.textContent = leader.record;
-      node.append(label, document.createTextNode(" "), name, document.createTextNode(" "), record);
+      label.textContent = "Leader · " + leader.name;
+      var score = document.createElement("span");
+      score.className = "leader-score";
+      var figure = document.createElement("span");
+      figure.className = "leader-figure";
+      var num = document.createElement("span");
+      num.className = "leader-num";
+      num.textContent = String(leader.wins);
+      var bar = document.createElement("span");
+      bar.className = "leader-bar";
+      bar.setAttribute("aria-hidden", "true");
+      figure.append(num, bar);
+      var unit = document.createElement("span");
+      unit.className = "leader-unit";
+      unit.textContent = "Wins";
+      score.append(figure, unit);
+      node.append(label, score);
       node.hidden = false;
     });
   }
@@ -254,7 +235,7 @@
     return Promise.all([rosterPromise, readJson(league.espn)]).then(function (parts) {
       var records = parseStandings(parts[1], league.abbr, league.season, league.minimum);
       if (!records) return;
-      paint(id, rank(parts[0], records, lossesOf));
+      paint(id, rank(parts[0], records));
     });
   }
 

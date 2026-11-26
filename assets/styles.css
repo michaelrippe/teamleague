@@ -188,8 +188,7 @@ h2 {
 }
 
 .note,
-.archive-note,
-.leader {
+.archive-note {
   font-family: var(--mono);
 }
 
@@ -200,33 +199,65 @@ h2 {
 }
 
 .leader {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
+  display: grid;
+  gap: 0;
   margin: 2px 0 0;
+  min-width: 0;
   color: var(--ink);
 }
 
 .leader-k {
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.leader-name {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.leader-score {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  max-width: 100%;
+  min-width: 0;
 }
 
-.leader-rec {
-  margin-left: auto;
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  font-weight: 600;
+.leader-figure {
+  display: inline-grid;
+  justify-items: stretch;
+  min-width: 0;
+}
+
+.leader-num {
+  display: block;
+  padding-left: 0.06em;
+  color: var(--ink);
+  font-family: "Bebas Neue", "Arial Narrow", Impact, Haettenschweiler, sans-serif;
+  font-size: clamp(3.4rem, 15vw, 5.4rem);
+  font-weight: 400;
+  font-style: italic;
+  font-synthesis: none;
+  line-height: 0.78;
   letter-spacing: -0.03em;
+  transform: skewX(-8deg);
+  transform-origin: left bottom;
+}
+
+.leader-bar {
+  display: block;
+  height: 8px;
+  margin-top: 3px;
+  background: var(--signal);
+}
+
+.leader-unit {
+  padding-bottom: 12px;
+  font-family: "Bebas Neue", "Arial Narrow", Impact, Haettenschweiler, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   line-height: 1;
+  text-transform: uppercase;
 }
 
 .card-action {
