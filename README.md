@@ -2,7 +2,7 @@
 
 Friends draft whole pro teams, not individual players. Each team’s real wins add up, and the best combined record at the end of the season wins.
 
-This repository is the public hub for those leagues. It is a static site: no build step and no app dependencies. GitHub Pages serves it from the `main` branch root at `https://michaelrippe.github.io/teamleague/`. Asset paths are relative so the same files work after a custom domain is added.
+This repository is the public hub for those leagues. It is a static site: no build step and no app dependencies. GitHub Pages serves it from the `main` branch root at `https://playteamleague.com/`. Asset paths are relative so the same files work after a custom domain is added.
 
 ## Structure
 
@@ -53,7 +53,7 @@ Example — pin a league in season:
     icon: "🏀",
     status: "live",
     accent: "#F15A22",
-    url: "https://michaelrippe.github.io/nbatl26/",
+    url: "https://nba.playteamleague.com/",
   season: "2025–26 season",
 }
 ```
@@ -68,7 +68,7 @@ Example — let opening day flip a league on, and keep last year’s results on 
     status: "offseason",
     accent: "#E31937",
     start: "2027-03-24",
-  url: "https://michaelrippe.github.io/mlbtl26/",
+  url: "https://mlb.playteamleague.com/",
   season: "Opens Mar 24, 2027",
   resultsLabel: "2026 results",
 }
@@ -108,7 +108,7 @@ Move each league app into this repo as `/nba`, `/nhl`, `/nfl`, and `/mlb`. Those
 1. Open this repo on GitHub → **Settings** → **Pages**.
 2. Under **Build and deployment**, choose **Deploy from a branch**.
 3. Branch: `main`. Folder: `/` (root). Save.
-4. When the deploy finishes, the hub is at `https://michaelrippe.github.io/teamleague/`.
+4. When the deploy finishes, the hub is at `https://playteamleague.com/`.
 
 `.nojekyll` is in the root so Pages will not run Jekyll or drop files.
 

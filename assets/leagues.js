@@ -18,7 +18,7 @@ window.TEAM_LEAGUES = [
     icon: "🏀",
     status: "live",
     accent: "#F15A22",
-    url: "https://michaelrippe.github.io/nbatl26/",
+    url: "https://nba.playteamleague.com/",
     season: "2025–26 season",
   },
   {
@@ -27,7 +27,7 @@ window.TEAM_LEAGUES = [
     icon: "🏒",
     status: "live",
     accent: "#A2AAAD",
-    url: "https://michaelrippe.github.io/nhltl/",
+    url: "https://nhl.playteamleague.com/",
     season: "Current season",
   },
   {
@@ -36,7 +36,7 @@ window.TEAM_LEAGUES = [
     icon: "🏈",
     status: "live",
     accent: "#00B140",
-    url: "https://michaelrippe.github.io/nfltl/",
+    url: "https://nfl.playteamleague.com/",
     season: "Current season",
   },
   {
@@ -48,7 +48,7 @@ window.TEAM_LEAGUES = [
     // Opening day flips this card to live. Add `end` when the last day
     // of the 2027 season is set; until then it stays live after it opens.
     start: "2027-03-24",
-    url: "https://michaelrippe.github.io/mlbtl26/",
+    url: "https://mlb.playteamleague.com/",
     season: "Opens Mar 24, 2027",
     resultsLabel: "2026 results",
   },
