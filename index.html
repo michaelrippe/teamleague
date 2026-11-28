@@ -20,14 +20,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/share.css">
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <div class="wrap">
+    <div class="wrap" data-share-inert>
       <main id="main" tabindex="-1">
         <header class="hero">
           <h1>Team League</h1>
           <p class="tagline">Draft teams. Stack wins. Beat your friends.</p>
+          <div class="tl-share" data-share-root>
+            <button type="button" class="tl-share-trigger" data-share-trigger aria-expanded="false" aria-haspopup="dialog" aria-controls="tl-share-dialog">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.75" d="M8 10H5v11h14V10h-3"/><path fill="none" stroke="currentColor" stroke-width="1.75" d="M12 3v12M8 7l4-4 4 4"/></svg>
+              Share Team League
+            </button>
+          </div>
         </header>
 
         <section class="section" aria-labelledby="leagues-title">
@@ -57,5 +64,32 @@
     <script src="assets/interest.js"></script>
     <script src="assets/scoreboard.js"></script>
     <script src="assets/hub.js"></script>
+    <div class="tl-share-overlay" data-share-overlay hidden>
+      <div class="tl-share-backdrop" data-share-backdrop></div>
+      <div class="tl-share-dialog" id="tl-share-dialog" data-share-dialog role="dialog" aria-modal="true" aria-labelledby="tl-share-title" tabindex="-1">
+        <div class="tl-share-handle" data-share-handle aria-hidden="true"></div>
+        <div class="tl-share-head" data-share-head>
+          <h2 class="tl-share-title" id="tl-share-title">Invite friends to Team League</h2>
+          <button type="button" class="tl-share-close" data-share-close aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.75" d="M5 5l14 14M19 5 5 19"/></svg>
+          </button>
+        </div>
+        <div class="tl-share-preview">
+          <img class="tl-share-preview-icon" src="assets/favicon.svg" width="36" height="36" alt="">
+          <div class="tl-share-preview-text">
+            <p class="tl-share-preview-name">Team League</p>
+            <p class="tl-share-preview-url">playteamleague.com</p>
+          </div>
+          <button type="button" class="tl-share-preview-copy" data-share="copy">Copy</button>
+        </div>
+        <div class="tl-share-grid">
+          <a class="tl-share-action" data-share="x" href="https://x.com/intent/post" aria-label="Share on X"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.839L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X</a>
+          <a class="tl-share-action" data-share="sms" href="sms:?&body=" aria-label="Share by text"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.75" d="M4.25 5.25h15.5v11.5H8.2L4.25 20.4V5.25z"/></svg> Text</a>
+          <a class="tl-share-action" data-share="email" href="mailto:?subject=Team%20League" aria-label="Share by email"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.25" y="5.25" width="17.5" height="13.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path fill="none" stroke="currentColor" stroke-width="1.75" d="m4.4 6.6 7.6 6.2 7.6-6.2"/></svg> Email</a>
+          <button type="button" class="tl-share-action" data-share="copy"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.25" y="8.25" width="11.5" height="11.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path fill="none" stroke="currentColor" stroke-width="1.75" d="M5.25 15.5V5.25H15.5"/></svg> Copy link</button>
+        </div>
+      </div>
+    </div>
+    <script src="assets/share.js"></script>
   </body>
 </html>
