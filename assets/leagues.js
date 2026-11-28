@@ -11,23 +11,20 @@
 // to pin status by hand.
 //
 // accent: 6-digit hex. A thin left stripe on a main card. Archive rows ignore it.
-// logo: square league mark. icon is the emoji fallback when logo is absent.
 window.TEAM_LEAGUES = [
   {
     id: "nba",
-    name: "NBA 2025–26",
+    name: "NBA",
     icon: "🏀",
-    logo: "assets/league-icons/nba.png",
     status: "live",
     accent: "#F15A22",
     url: "https://nba.playteamleague.com/",
-    season: "2025–26 season",
+    season: "Current season",
   },
   {
     id: "nhl",
     name: "NHL",
     icon: "🏒",
-    logo: "assets/league-icons/nhl.png",
     status: "live",
     accent: "#A2AAAD",
     url: "https://nhl.playteamleague.com/",
@@ -37,7 +34,6 @@ window.TEAM_LEAGUES = [
     id: "nfl",
     name: "NFL",
     icon: "🏈",
-    logo: "assets/league-icons/nfl.png",
     status: "live",
     accent: "#00B140",
     url: "https://nfl.playteamleague.com/",
@@ -47,7 +43,6 @@ window.TEAM_LEAGUES = [
     id: "mlb",
     name: "MLB",
     icon: "⚾",
-    logo: "assets/league-icons/mlb.png",
     status: "offseason",
     accent: "#E31937",
     // Opening day flips this card to live. Add `end` when the last day
@@ -61,7 +56,6 @@ window.TEAM_LEAGUES = [
     id: "nba-2024-25",
     name: "NBA 2024–25",
     icon: "🏀",
-    logo: "assets/league-icons/nba.png",
     status: "archive",
     url: "https://michaelrippe.github.io/nbatl/",
     season: "Final standings",
@@ -70,7 +64,6 @@ window.TEAM_LEAGUES = [
     id: "fantasy-mlb",
     name: "Fantasy MLB",
     icon: "⚾",
-    logo: "assets/league-icons/mlb.png",
     status: "archive",
     url: "https://michaelrippe.github.io/fantasymlbtl/",
     season: "Final standings",
