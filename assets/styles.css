@@ -171,6 +171,23 @@ h2 {
   line-height: 1;
 }
 
+.icon-logo {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  overflow: hidden;
+  border-color: var(--ink);
+  border-radius: 12px;
+  background: #111;
+}
+
+.icon-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card h3 {
   margin: 0;
   flex: 1;
@@ -333,7 +350,6 @@ h2 {
   background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: 0;
-  filter: grayscale(1);
 }
 
 .archive-text {
@@ -358,6 +374,10 @@ h2 {
 .archive-list a:hover .archive-note,
 .archive-list a:hover .archive-action {
   color: var(--paper);
+}
+
+.archive-list a:hover .icon-logo {
+  border-color: var(--paper);
 }
 
 .archive-action {
