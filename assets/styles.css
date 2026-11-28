@@ -90,6 +90,22 @@ h3,
   border-bottom: 1px solid var(--rule);
 }
 
+.play-mark {
+  display: block;
+  width: fit-content;
+  margin: 0 0 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: var(--signal);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
 h1 {
   display: inline-block;
   margin: 0 0 14px;
@@ -169,23 +185,6 @@ h2 {
   background: var(--paper);
   font-size: 1.35rem;
   line-height: 1;
-}
-
-.icon-logo {
-  width: 64px;
-  height: 64px;
-  padding: 0;
-  overflow: hidden;
-  border-color: var(--ink);
-  border-radius: 12px;
-  background: #111;
-}
-
-.icon-logo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .card h3 {
@@ -350,6 +349,7 @@ h2 {
   background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: 0;
+  filter: grayscale(1);
 }
 
 .archive-text {
@@ -374,10 +374,6 @@ h2 {
 .archive-list a:hover .archive-note,
 .archive-list a:hover .archive-action {
   color: var(--paper);
-}
-
-.archive-list a:hover .icon-logo {
-  border-color: var(--paper);
 }
 
 .archive-action {

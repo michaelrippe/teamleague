@@ -136,25 +136,6 @@
     return match ? "#" + match[1].toUpperCase() : "";
   }
 
-  function createIcon(league) {
-    var icon = document.createElement("span");
-    icon.className = "icon";
-    icon.setAttribute("aria-hidden", "true");
-    if (league.logo) {
-      icon.classList.add("icon-logo");
-      var img = document.createElement("img");
-      img.src = league.logo;
-      img.alt = "";
-      img.width = 64;
-      img.height = 64;
-      img.decoding = "async";
-      icon.appendChild(img);
-      return icon;
-    }
-    icon.textContent = league.icon || "🏆";
-    return icon;
-  }
-
   function renderCard(league, status) {
     var article = document.createElement("article");
     article.className = "card";
@@ -166,7 +147,10 @@
     var top = document.createElement("div");
     top.className = "card-top";
 
-    var icon = createIcon(league);
+    var icon = document.createElement("span");
+    icon.className = "icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = league.icon || "🏆";
 
     var title = document.createElement("h3");
     title.textContent = league.name || "League";
@@ -233,7 +217,10 @@
     var row = document.createElement(href ? "a" : "div");
     if (href) row.href = href;
 
-    var icon = createIcon(league);
+    var icon = document.createElement("span");
+    icon.className = "icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = league.icon || "🏆";
 
     var text = document.createElement("span");
     text.className = "archive-text";
