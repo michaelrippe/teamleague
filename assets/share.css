@@ -1,0 +1,352 @@
+/* Team League share — compact modal (desktop) / bottom sheet (mobile).
+   Actions: X, Text, Email, Copy link. */
+
+.tl-share {
+  margin-top: 18px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.tl-share-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tl-share-trigger:hover,
+.tl-share-trigger[aria-expanded="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tl-share-trigger svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+}
+
+.tl-share-overlay[hidden] {
+  display: none !important;
+}
+
+.tl-share-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  margin: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.tl-share-overlay.is-ready {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.tl-share-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  cursor: pointer;
+}
+
+.tl-share-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(360px, 100%);
+  max-height: min(90vh, 32rem);
+  overflow: auto;
+  padding: 14px 14px 16px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.tl-share-overlay.is-open .tl-share-backdrop {
+  opacity: 1;
+}
+
+.tl-share-overlay.is-open .tl-share-dialog {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tl-share-backdrop {
+    transition: opacity 0.22s ease;
+  }
+
+  .tl-share-dialog {
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+}
+
+.tl-share-handle {
+  display: none;
+  width: 36px;
+  height: 4px;
+  margin: 2px auto 10px;
+  background: var(--ink);
+}
+
+.tl-share-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.tl-share-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 12.4rem;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3.4vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.tl-share-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -6px -6px 0 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.tl-share-close:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tl-share-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tl-share-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  margin-bottom: 12px;
+  padding: 8px 8px 8px 10px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.tl-share-preview-icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.tl-share-preview-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.tl-share-preview-name {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.tl-share-preview-url {
+  margin: 3px 0 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-share-preview-copy {
+  flex: none;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.tl-share-preview-copy:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tl-share-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tl-share-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 72px;
+  padding: 10px 6px 8px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tl-share-action:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tl-share-action svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.tl-share-toast {
+  position: fixed;
+  z-index: 90;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 12px);
+  opacity: 0;
+  pointer-events: none;
+  max-width: min(22rem, calc(100vw - 32px));
+  padding: 12px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.tl-share-toast.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tl-share-toast {
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+}
+
+@media (max-width: 719px) {
+  .tl-share-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .tl-share-dialog {
+    width: 100%;
+    max-width: none;
+    max-height: min(72vh, 26rem);
+    padding: 6px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(100%);
+  }
+
+  .tl-share-overlay.is-open .tl-share-dialog {
+    transform: translateY(0);
+  }
+
+  .tl-share-handle {
+    display: block;
+  }
+
+  .tl-share-head {
+    margin-bottom: 10px;
+  }
+
+  .tl-share-title {
+    max-width: none;
+  }
+
+  .tl-share-preview {
+    margin-bottom: 10px;
+  }
+
+  .tl-share-action {
+    min-height: 64px;
+  }
+
+  .tl-share-toast {
+    bottom: auto;
+    top: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-share-dialog {
+    transform: none;
+  }
+
+  .tl-share-toast {
+    transform: translate(-50%, 0);
+  }
+}
